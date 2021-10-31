@@ -45,8 +45,8 @@ class Question extends Component {
 						<label className='w-full flex items-center'>
 							<input
 								type='radio'
-								value={question.optionOne.text}
-								checked={this.state.selectedOption === question.optionOne.text}
+								value='optionOne'
+								checked={this.state.selectedOption === 'optionOne'}
 								onChange={this.onOptionChange}
 								className='h-4 w-4'
 							/>
@@ -57,8 +57,8 @@ class Question extends Component {
 						<label className='w-full flex items-center '>
 							<input
 								type='radio'
-								value={question.optionTwo.text}
-								checked={this.state.selectedOption === question.optionTwo.text}
+								value='optionTwo'
+								checked={this.state.selectedOption === 'optionTwo'}
 								onChange={this.onOptionChange}
 								className='h-4 w-4'
 							/>

@@ -53,8 +53,8 @@ export const handleSaveQuestionAnswer = (id, answer) => {
 			answer,
 		})
 			.then(() => {
-				dispatch(saveQuestionAnswer(authedUser, id, answer))
-				dispatch(saveQuestionAnswerToUser(authedUser, id, answer))
+				dispatch(saveQuestionAnswer(authedUser, answer, id))
+				dispatch(saveQuestionAnswerToUser(authedUser, answer, id))
 			})
 			.catch(function (error) {
 				alert('There was an error answering a question: ', error)
