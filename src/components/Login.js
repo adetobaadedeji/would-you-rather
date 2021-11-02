@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { setAuthedUser } from '../actions/authedUser'
 
 class Login extends Component {
@@ -17,18 +17,14 @@ class Login extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault()
 		this.props.dispatch(setAuthedUser(this.state.selectedUser))
-
-		let prevRouterPath =
-			this.props.location.state !== undefined
-				? this.props.location.state.previous.pathname
-				: null
-		prevRouterPath
-			? this.props.history.push(prevRouterPath)
-			: this.props.history.push('/')
 	}
 
 	render() {
-		const { users } = this.props
+		const { authedUser, users, location } = this.props
+		const { from } = location.state || { from: { pathname: '/' } }
+		if (authedUser !== null) {
+			return <Redirect to={from} />
+		}
 
 		return (
 			<div className='w-full md:w-1/4 bg-white mx-auto mt-10 border-2 border-green-50 rounded'>
@@ -39,7 +35,6 @@ class Login extends Component {
 					<p>Please sign in to continue </p>
 				</div>
 				<div className='w-full px-2 pb-2 pt-5'>
-					{/* <img src={''} /> */}
 					<form
 						onSubmit={this.handleSubmit}
 						className='w-full outline-none rounded'
@@ -60,7 +55,6 @@ class Login extends Component {
 							</option>
 							{users.map((user) => (
 								<option key={user.id} value={user.id}>
-									{/* <img alt='' className='rounded-full' src={user.avatarURL} /> */}
 									{user.name}
 								</option>
 							))}
@@ -84,10 +78,11 @@ class Login extends Component {
 	}
 }
 
-function mapStateToProps({ users }) {
+function mapStateToProps({ users, authedUser }) {
 	return {
 		users: Object.values(users),
+		authedUser,
 	}
 }
 
-export default withRouter(connect(mapStateToProps)(Login))
+export default connect(mapStateToProps)(Login)

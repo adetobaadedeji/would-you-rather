@@ -18,9 +18,11 @@ const PrivateRoute = ({ component: Component, authedUser, ...rest }) => (
 			authedUser !== null ? (
 				<Component {...props} />
 			) : (
-				<Redirect
-					to='/login'
-					
+					<Redirect
+					to={{
+						pathname: '/login',
+						state: { from: props.location },
+					}}
 				/>
 			)
 		}
@@ -64,7 +66,7 @@ class App extends Component {
 								component={QuestionDetails}
 								authedUser={authedUser}
 							/>
-							<Route render={() => <NoMatch />} />
+							<Route path='*'  component={NoMatch} />
 						</Switch>
 					</div>
 				</Fragment>

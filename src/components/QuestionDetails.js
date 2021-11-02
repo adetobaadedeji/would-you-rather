@@ -3,10 +3,14 @@ import { connect } from 'react-redux'
 import Question from './Question'
 import QuestionResult from './QuestionResult'
 import { Link } from 'react-router-dom'
+import NoMatch from './NoMatch'
 
 class QuestionDetails extends React.Component {
 	render() {
-		const { authedUser, user, question, questionAnswered } = this.props
+		const { authedUser, user, question, questionAnswered, isError } = this.props
+		if (isError) {
+			return <NoMatch />
+		}
 
 		return (
 			<div className='w-full md:w-1/3 text-sm md:text-base mx-auto mt-8 border-green-200'>
@@ -37,7 +41,6 @@ class QuestionDetails extends React.Component {
 									Return Home
 								</Link>
 							)}
-							{/* <Link></Link> */}
 						</div>
 					</div>
 				</div>
@@ -47,6 +50,13 @@ class QuestionDetails extends React.Component {
 }
 
 const mapStateToProps = ({ authedUser, users, questions }, props) => {
+	let isError = false
+	if (questions[props.match.params.question_id] === undefined) {
+		isError = true
+		return {
+			isError,
+		}
+	}
 	const id = props.match.params.question_id
 	const question = questions[id]
 	const user = users[question.author]
@@ -60,6 +70,7 @@ const mapStateToProps = ({ authedUser, users, questions }, props) => {
 		question,
 		user,
 		id,
+		isError,
 	}
 }
 

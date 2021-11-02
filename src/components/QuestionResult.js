@@ -1,6 +1,5 @@
 import ProgressBar from './ProgressBar'
 import React from 'react'
-// import ProgressBar from '@ramonak/react-progress-bar'
 
 const QuestionResult = ({ question, authedUser }) => {
 	const { optionOne, optionTwo } = question
