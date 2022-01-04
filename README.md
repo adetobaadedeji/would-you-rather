@@ -1,6 +1,6 @@
 # WOULD YOU RATHER PROJECT
 
-Would You Rather is a polling game that presents the user with a series of questions that can be answered one of two ways. The user can post questions and also vote on questions posted by other users. There is also a leaderboard to show users with the highest scores. This project is the second prerequisite project for the completion of the Udacity React Nanodegree Program. This project is to solidify the understanding of students on Redux as a state management tool. This project is built with React, Redux, Redux-Thunk, and React-Router.
+Would You Rather is a polling game that presents the user with a series of questions that can be answered one of two ways. The user can post questions and also vote on questions posted by other users. There is also a leaderboard to show users with the highest scores. This project is the second prerequisite project for the completion of the Udacity React Nanodegree Program. This project is to solidify the understanding of students on Redux as a state management tool. This project was built with React, Redux, Redux-Thunk, and React-Router.
 
 # FEATURES
 
